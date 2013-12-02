@@ -47,4 +47,11 @@ end
 
 gem 'rails_12factor', group: :production
 gem 'unicorn'
+gem 'foreigner'
+
+group :development, :test do
+  gem 'rspec-rails'
+  gem 'factory_girl_rails'
+end
+
 ruby "2.0.0"
