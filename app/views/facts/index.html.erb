@@ -2,3 +2,43 @@
   <h1>Best Facts app!</h1>
   <p>Single place to get facts right</p>
 </div>
+
+<div class="panel panel-default" ng-controller="FactController">
+  <!-- Default panel contents -->
+  <div class="panel-heading">
+    <span>Listing all facts!!</span>
+    <a class="btn pull-right" ng-class="{show: isUserLoggedIn, hide:!isUserLoggedIn}"><i class="fa fa-plus"></i> Add new fact</a>
+    <a class="btn pull-right" ng-class="{show: !isUserLoggedIn, hide:isUserLoggedIn}"><i class="fa fa-sign-in"></i> Register to add a fact!</a>
+  </div>
+
+  <!-- Table -->
+  <table class="table">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Author</th>
+        <th>Title</th>
+        <th>Content</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>$index+1</td>
+        <td>fact.author</td>
+        <td>fact.title</td>
+        <td>fact.content</td>
+      </tr>
+      <tr ng-repeat="fact in facts">
+        <td>{{$index+1}}</td>
+        <td>{{fact.author}}</td>
+        <td>{{fact.title}}</td>
+        <td>{{fact.content}}</td>
+      </tr>
+      <tr ng-class="{show: !isUserLoggedIn, hide:isUserLoggedIn}">
+        <td colspan="4" align="center">
+          <a class="btn"><i class="fa fa-sign-in"></i> Register to add a fact!</a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

@@ -6,6 +6,7 @@
   <title>BestFacts</title>
   <%= stylesheet_link_tag    "application", media: "all"%>
   <%= csrf_meta_tags %>
+  <%= include_gon %>
   <%= javascript_include_tag "//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js" %>
   <%= javascript_include_tag "//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js" %>
   <%= javascript_include_tag "https://ajax.googleapis.com/ajax/libs/angularjs/1.2.3/angular.js" %>
@@ -33,9 +34,15 @@
         <button ng-click="loginClicked()" type="button" class="btn close" aria-hidden="true">&times;</button>
       </form>
 
-      <ul class="nav navbar-nav navbar-right">
+      <ul ng-hide="isUserLoggedIn" class="nav navbar-nav navbar-right">
         <li><a eat-click="true" href="#">Register</a></li>
         <li><a ng-class="{show:hideForm, hide:!hideForm}" ng-click="loginClicked()" eat-click="true" href="#">Login</a>
+        </li>
+      </ul>
+
+      <ul ng-show="isUserLoggedIn" class="nav navbar-nav navbar-right">
+        <li><a eat-click="true" href="#">{{username}}</a></li>
+        <li><a ng-click="signout()" eat-click="true" href="#"><i class="fa fa-sign-out"></i></a></li>
         </li>
       </ul>
 

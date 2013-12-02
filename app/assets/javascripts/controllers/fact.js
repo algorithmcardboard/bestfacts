@@ -1,11 +1,11 @@
 (function(angular, app) {
   "use strict";
 
-  app.controller("NavbarController",["$scope", "userService", function($scope, userService) {
+  app.controller("FactController",["$scope", "userService", function($scope, userService) {
 
-    $scope.hideForm = true;
     $scope.isUserLoggedIn = userService.isUserLoggedIn();
-    $scope.username = userService.getUserName();
+
+    console.log($scope.isUserLoggedIn);
 
     $scope.loginClicked = function(){
       $scope.hideForm = !$scope.hideForm;

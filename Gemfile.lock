@@ -45,8 +45,13 @@ GEM
     factory_girl_rails (4.3.0)
       factory_girl (~> 4.3.0)
       railties (>= 3.0.0)
+    font-awesome-rails (4.0.3.0)
+      railties (>= 3.2, < 5.0)
     foreigner (1.6.0)
       activerecord (>= 3.0.0)
+    gon (4.1.1)
+      actionpack (>= 2.3.0)
+      json
     hike (1.2.3)
     i18n (0.6.5)
     jbuilder (1.5.2)
@@ -141,7 +146,9 @@ DEPENDENCIES
   bootstrap-sass (~> 3.0.2.0)
   coffee-rails (~> 4.0.0)
   factory_girl_rails
+  font-awesome-rails
   foreigner
+  gon
   jbuilder (~> 1.2)
   jquery-rails
   pg

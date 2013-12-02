@@ -46,6 +46,8 @@ end
 #
 
 gem 'bootstrap-sass', '~> 3.0.2.0'
+gem 'font-awesome-rails'
+gem 'gon'
 
 gem 'rails_12factor', group: :production
 gem 'unicorn'
