@@ -1,9 +1,15 @@
 BestFacts::Application.routes.draw do  
 
-  resources :facts, defaults: {format: :json}
+  root "facts#index"
 
-  get "user/register", constraints: {format: 'json'}
-  get "user/login", constraints: {format: 'json'}
+  scope :format => true, :constraints => { :format => 'json' } do
+    resources :facts, :constraints => {:format => /json/}
+  end
+
+  scope :format => true, :constraints => { :format => 'json' } do
+    get "user/register", constraints: {format: 'json'}
+    get "user/login", constraints: {format: 'json'}
+  end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
