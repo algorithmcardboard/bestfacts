@@ -1,4 +1,6 @@
-BestFacts::Application.routes.draw do  resources :facts
+BestFacts::Application.routes.draw do  
+
+  resources :facts, defaults: {format: :json}
 
   get "user/register", constraints: {format: 'json'}
   get "user/login", constraints: {format: 'json'}
