@@ -28,7 +28,7 @@
         </div>
         <div class="col-md-4">
           <span ng-hide="fact.editing">{{fact.content}}</span>
-          <textarea ng-show="fact.editing" class="form-control" ng-model="fact.newContent" ng-init="fact.newContent=fact.content"></textarea>
+          <textarea ng-show="fact.editing" class="form-control auto-grow" ng-model="fact.newContent" ng-init="fact.newContent=fact.content"></textarea>
         </div>
         <div class="col-md-1 fact-edit-control" ng-show="fact.user_id === current_user_id">
           <i class="fa fa-trash-o pull-right" ng-click="removeFact(fact)" ng-hide="fact.editing"></i>
@@ -47,7 +47,7 @@
           <input ng-show="addingFact" class="form-control" type="text" ng-model="newTitle" required/>
         </div>
         <div class="col-md-4">
-          <textarea ng-show="addingFact" rows="1" class="form-control" ng-model="newContent" required></textarea>
+          <textarea ng-show="addingFact" rows="1" class="form-control auto-grow" ng-model="newContent" required></textarea>
         </div>
         <div class="col-md-1">
           <i ng-click="addingFact=false" class="fa fa-times pull-right"></i>
