@@ -8,7 +8,7 @@
   <div class="panel-heading">
     <span>Listing all facts!!</span>
     <a class="btn pull-right" ng-class="{show: isUserLoggedIn, hide:!isUserLoggedIn}"><i class="fa fa-plus"></i> Add new fact</a>
-    <a class="btn pull-right" ng-class="{show: !isUserLoggedIn, hide:isUserLoggedIn}"><i class="fa fa-sign-in"></i> Register to add a fact!</a>
+    <a data-toggle="modal" data-target="#loginModal" class="btn pull-right" ng-class="{show: !isUserLoggedIn, hide:isUserLoggedIn}"><i class="fa fa-sign-in"></i> Register to add a fact!</a>
   </div>
 
   <!-- Table -->
@@ -36,7 +36,7 @@
       </tr>
       <tr ng-class="{show: !isUserLoggedIn, hide:isUserLoggedIn}">
         <td colspan="4" align="center">
-          <a class="btn"><i class="fa fa-sign-in"></i> Register to add a fact!</a>
+          <a data-toggle="modal" data-target="#loginModal" class="btn"><i class="fa fa-sign-in"></i> Register to add a fact!</a>
         </td>
       </tr>
     </tbody>

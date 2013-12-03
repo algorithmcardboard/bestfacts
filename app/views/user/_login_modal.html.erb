@@ -1,0 +1,42 @@
+<div class="modal fade loginModal" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true" ng-controller="RegistrationController">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="loginModalLabel">Register with Best Facts</h4>
+      </div>
+      <div class="modal-body">
+        <form name="loginForm" class="form-horizontal" role="form">
+            <div class="form-group">
+              <label for="inputName" class="col-sm-2 control-label">Name</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" id="inputName" placeholder="Your name" ng-model="fullName" name="fullName" required>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputEmail" class="col-sm-2 control-label">Email</label>
+              <div class="col-sm-10">
+                <input type="email" class="form-control" id="inputEmail" placeholder="Email" ng-model="email" name="email" required>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputPassword" class="col-sm-2 control-label">Password</label>
+              <div class="col-sm-10">
+                <input type="password" class="form-control" id="inputPassword" placeholder="Password" ng-model="passwd" name="passwd" equals="cpasswd" required>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputConfirmPassword" class="col-sm-2 control-label">Confirm Password</label>
+              <div class="col-sm-10">
+                <input type="password" class="form-control" id="inputConfirmPassword" placeholder="Confirm Password" ng-model="cpasswd" name="cpasswd" equals="passwd" required>
+              </div>
+            </div>
+          </form>
+      </div>
+      <div class="modal-footer">
+        <a type="button" class="btn" data-dismiss="modal">Close</a>
+        <button ng-disabled="loginForm.$invalid" ng-click="registerUser()" type="button" class="btn btn-primary">Register</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

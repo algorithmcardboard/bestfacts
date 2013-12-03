@@ -9,3 +9,12 @@ body {
 tr.show{
   display:table-row !important
 }
+
+.loginModal .modal-footer{
+  margin-top:-10px;
+}
+
+.form-control.ng-invalid.ng-dirty{
+  border-color:#E9322D;
+  box-shadow:0 0 6px #F8B9B7;
+}

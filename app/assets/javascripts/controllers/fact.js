@@ -5,8 +5,6 @@
 
     $scope.isUserLoggedIn = userService.isUserLoggedIn();
 
-    console.log($scope.isUserLoggedIn);
-
     $scope.loginClicked = function(){
       $scope.hideForm = !$scope.hideForm;
     };

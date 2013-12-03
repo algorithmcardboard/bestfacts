@@ -35,7 +35,7 @@
       </form>
 
       <ul ng-hide="isUserLoggedIn" class="nav navbar-nav navbar-right">
-        <li><a eat-click="true" href="#">Register</a></li>
+        <li><a eat-click="true" data-toggle="modal" data-target="#loginModal" href="#">Register</a></li>
         <li><a ng-class="{show:hideForm, hide:!hideForm}" ng-click="loginClicked()" eat-click="true" href="#">Login</a>
         </li>
       </ul>
@@ -53,6 +53,8 @@
   <div class="container">
 <%= yield %>
   </div>
+
+  <%= render "user/login_modal" %>
 
   <%= javascript_include_tag "application"%>
 </body>
