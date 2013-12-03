@@ -55,7 +55,7 @@
         .then(function(response){
           $scope.facts.push(response.data);
           $scope.newTitle = $scope.newContent = "";
-          $scope.addFact = false;
+          $scope.addingFact = false;
         },function(response){
         });
     };
