@@ -6,7 +6,7 @@ class FactsController < ApplicationController
   # GET /facts
   # GET /facts.json
   def index
-    @facts = Fact.includes(:user).load
+    @facts = Fact.where("is_active = true").includes(:user).load
   end
 
   # GET /facts/1
@@ -25,16 +25,12 @@ class FactsController < ApplicationController
 
   # POST /facts.json
   def create
-    @fact = Fact.new(fact_params)
+    @fact = Fact.new(title: params[:title], content: params[:content], is_active: true, user_id: current_user_id)
 
-    respond_to do |format|
-      if @fact.save
-        format.html { redirect_to @fact, notice: 'Fact was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @fact }
-      else
-        format.html { render action: 'new' }
-        format.json { render json: @fact.errors, status: :unprocessable_entity }
-      end
+    if @fact.save!
+      render json: {id:@fact.id, title:@fact.title, content:@fact.content, username: @fact.user.name, user_id:@fact.user.id}, status: :created
+    else
+      render json: @fact.errors, status: :unprocessable_entity
     end
   end
 
@@ -55,10 +51,12 @@ class FactsController < ApplicationController
   # DELETE /facts/1
   # DELETE /facts/1.json
   def destroy
-    @fact.destroy
-    respond_to do |format|
-      format.html { redirect_to facts_url }
-      format.json { head :no_content }
+    @updatedCount = Fact.where(["user_id = ? and id = ?", current_user_id, params[:id]]).update_all(["is_active = ?, updated_at = ?",false, Time.now.utc])
+
+    if(@updatedCount == 1)
+      head :no_content
+    else
+      render json: {}, status: 401
     end
   end
 

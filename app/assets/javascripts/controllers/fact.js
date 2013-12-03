@@ -21,8 +21,30 @@
       $scope.hideForm = !$scope.hideForm;
     };
 
+    $scope.removeFact = function(fact){
+      if(!fact){
+        return;
+      }
+
+      factService.deleteFact(fact.id).
+        then(function(response){
+          var index = $scope.facts.indexOf(fact);
+          $scope.facts.splice(index,1);
+        },function(response){
+        });
+    };
+
     $scope.createFact = function(){
-      factService.createFact($scope.newTitle, $scope.newContent);
+      if(!$scope.newTitle || !$scope.newContent){
+        return;
+      }
+      factService.createFact($scope.newTitle, $scope.newContent)
+        .then(function(response){
+          $scope.facts.push(response.data);
+          $scope.newTitle = $scope.newContent = "";
+          $scope.addFact = false;
+        },function(response){
+        });
     };
 
     $scope.initilaize();

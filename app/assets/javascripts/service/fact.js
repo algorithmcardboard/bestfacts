@@ -3,7 +3,11 @@
   app.service("factService",["$window", "$http", function($window, $http) {
 
     var _url = {
-      allFactsUrl : '/facts.json'
+      allFactsUrl : '/facts.json',
+      factCreateUrl : '/facts.json',
+      deleteFactUrl : function(fact_id){
+        return  '/facts/'+fact_id+'.json';
+      }
     };
 
     var getAllFacts = function(sortBy){
@@ -11,11 +15,17 @@
     };
 
     var createFact = function(title,content){
+      return $http.post(_url.factCreateUrl, {title:title, content:content});
+    };
+
+    var deleteFact = function(fact_id){
+      return $http['delete'](_url.deleteFactUrl(fact_id));
     };
 
     return {
       getAllFacts: getAllFacts,
-      createFact:createFact
+      createFact:createFact,
+      deleteFact:deleteFact,
     };
   }]);
 })(angular, app);
