@@ -7,6 +7,9 @@
       factCreateUrl : '/facts.json',
       deleteFactUrl : function(fact_id){
         return  '/facts/'+fact_id+'.json';
+      },
+      updateFactUrl: function(fact_id){
+        return  '/facts/'+fact_id+'.json';
       }
     };
 
@@ -22,10 +25,15 @@
       return $http['delete'](_url.deleteFactUrl(fact_id));
     };
 
+    var updateFact = function(fact_id, title, content){
+      return $http.put(_url.updateFactUrl(fact_id), {title:title, content:content});
+    };
+
     return {
       getAllFacts: getAllFacts,
       createFact:createFact,
       deleteFact:deleteFact,
+      updateFact:updateFact
     };
   }]);
 })(angular, app);

@@ -37,14 +37,12 @@ class FactsController < ApplicationController
   # PATCH/PUT /facts/1
   # PATCH/PUT /facts/1.json
   def update
-    respond_to do |format|
-      if @fact.update(fact_params)
-        format.html { redirect_to @fact, notice: 'Fact was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: 'edit' }
-        format.json { render json: @fact.errors, status: :unprocessable_entity }
-      end
+    @updatedCount = Fact.where(["user_id = ? and id = ?", current_user_id, params[:id]]).update_all(["content = ?, title=?, updated_at = ?",params[:content], params[:title], Time.now.utc])
+
+    if(@updatedCount == 1)
+      head :no_content
+    else
+      render json: {}, status: 401
     end
   end
 

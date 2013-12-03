@@ -20,14 +20,14 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 
       <% if @current_user.blank? %>
-        <form class="navbar-form navbar-right hide" role="search" ng-class="{show:!hideForm, hide:hideForm}">
+        <form name="loginForm" ng-submit="authenticateUser()" class="navbar-form navbar-right hide" role="search" ng-class="{show:!hideForm, hide:hideForm}">
           <div class="form-group">
             <label class="sr-only" for="exampleInputEmail2">Email address</label>
-            <input type="email" class="form-control" id="exampleInputEmail2" placeholder="Enter email">
+            <input type="email" class="form-control" id="exampleInputEmail2" placeholder="Enter email" ng-model="email" required>
           </div>
           <div class="form-group">
             <label class="sr-only" for="exampleInputPassword2">Password</label>
-            <input type="password" class="form-control" id="exampleInputPassword2" placeholder="Password">
+            <input type="password" class="form-control" id="exampleInputPassword2" placeholder="Password" ng-model="password" required>
           </div>
           <button type="submit" class="btn btn-default">Submit</button>
           <button ng-click="loginClicked()" type="button" class="btn close" aria-hidden="true">&times;</button>

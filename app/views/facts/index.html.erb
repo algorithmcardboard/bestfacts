@@ -22,14 +22,20 @@
       <div class="row">
         <div class="col-md-1">{{$index + 1}}</div>
         <div class="col-md-2">{{fact.username}}</div>
-        <div class="col-md-4">{{fact.title}}</div>
-        <div class="col-md-4">{{fact.content}}</div>
+        <div class="col-md-4">
+          <span ng-hide="fact.editing">{{fact.title}}</span>
+          <input ng-show="fact.editing" class="form-control" type="text" ng-init="fact.newTitle = fact.title" ng-model="fact.newTitle" required/>
+        </div>
+        <div class="col-md-4">
+          <span ng-hide="fact.editing">{{fact.content}}</span>
+          <textarea ng-show="fact.editing" class="form-control" ng-model="fact.newContent" ng-init="fact.newContent=fact.content"></textarea>
+        </div>
         <div class="col-md-1 fact-edit-control" ng-show="fact.user_id === current_user_id">
-          <i class="fa fa-trash-o pull-right" ng-click="removeFact(fact)" ng-hide="editing"></i>
-          <i class="fa fa-pencil pull-right" ng-click="editing=true" ng-hide="editing"></i>
+          <i class="fa fa-trash-o pull-right" ng-click="removeFact(fact)" ng-hide="fact.editing"></i>
+          <i class="fa fa-pencil pull-right" ng-click="fact.editing=true" ng-hide="fact.editing"></i>
 
-          <i class="fa fa-times pull-right" ng-click="editing=false" ng-show="editing"></i>
-          <i class="fa fa-check pull-right" ng-show="editing"></i>
+          <i class="fa fa-times pull-right" ng-click="fact.editing=false" ng-show="fact.editing"></i>
+          <i class="fa fa-check pull-right" ng-click="updateFact(fact)" ng-show="fact.editing"></i>
         </div>
       </div>
     </li>
@@ -38,7 +44,7 @@
         <div class="col-md-1">{{facts.length + 1}}</div>
         <div class="col-md-2">{{loggedinUsername}}</div>
         <div class="col-md-4">
-          <input ng-show="addingFact" rows="1" class="form-control" type="text" ng-model="newTitle" required/>
+          <input ng-show="addingFact" class="form-control" type="text" ng-model="newTitle" required/>
         </div>
         <div class="col-md-4">
           <textarea ng-show="addingFact" rows="1" class="form-control" ng-model="newContent" required></textarea>

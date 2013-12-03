@@ -1,5 +1,5 @@
 class UserController < ApplicationController
-  skip_before_filter :redirect_if_no_user_session, :only => [:signout, :register]
+  skip_before_filter :redirect_if_no_user_session, :only => [:signout, :register, :login]
   def register
     user = User.new(name: params[:name], email: params[:email], password: params[:password], password_confirmation: params[:cpassword])
 
@@ -14,6 +14,15 @@ class UserController < ApplicationController
   end
 
   def login
+    user = User.find_by("email = ?", params[:email]).try(:authenticate, params[:password])
+    if(!user.blank?)
+      reset_session
+      load_user_to_session(session,user)
+
+      render json: {}
+    else
+      render json: {}, status: 401
+    end
   end
 
   def logout

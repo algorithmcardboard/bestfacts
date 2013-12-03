@@ -34,6 +34,19 @@
         });
     };
 
+    $scope.updateFact = function(fact){
+      if(!fact){
+        return;
+      }
+      factService.updateFact(fact.id, fact.newTitle, fact.newContent).
+        then(function(response){
+          fact.editing = false;
+          fact.title = fact.newTitle;
+          fact.content = fact.newContent;
+        },function(response){
+        });
+    };
+
     $scope.createFact = function(){
       if(!$scope.newTitle || !$scope.newContent){
         return;
