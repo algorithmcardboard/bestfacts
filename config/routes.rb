@@ -7,9 +7,11 @@ BestFacts::Application.routes.draw do
   end
 
   scope :format => true, :constraints => { :format => 'json' } do
-    get "user/register", constraints: {format: 'json'}
-    get "user/login", constraints: {format: 'json'}
+    post "user/register", constraints: {format: 'json'}
+    post "user/login", constraints: {format: 'json'}
   end
+
+  get "user/logout"
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

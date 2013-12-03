@@ -1,5 +1,7 @@
 class FactsController < ApplicationController
+
   before_action :set_fact, only: [:show, :edit, :update, :destroy]
+  skip_before_filter :redirect_if_no_user_session, :only=>[:index]
 
   # GET /facts
   # GET /facts.json

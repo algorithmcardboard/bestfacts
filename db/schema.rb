@@ -16,35 +16,26 @@ ActiveRecord::Schema.define(version: 20131202164059) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "authors", force: true do |t|
-    t.string   "name",       null: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "facts", force: true do |t|
     t.string   "title"
     t.text     "content",    null: false
-    t.integer  "author_id"
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "facts", ["author_id"], name: "index_facts_on_author_id", using: :btree
   add_index "facts", ["user_id"], name: "index_facts_on_user_id", using: :btree
 
   create_table "users", force: true do |t|
-    t.string   "name",       null: false
-    t.string   "email",      null: false
-    t.string   "password",   null: false
+    t.string   "name",            null: false
+    t.string   "email",           null: false
+    t.string   "password_digest", null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
 
-  add_foreign_key "facts", "authors", name: "facts_author_id_fk"
   add_foreign_key "facts", "users", name: "facts_user_id_fk"
 
 end

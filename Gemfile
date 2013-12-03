@@ -49,6 +49,7 @@ gem 'bootstrap-sass', '~> 3.0.2.0'
 gem 'font-awesome-rails'
 gem 'gon'
 
+gem 'bcrypt-ruby'
 gem 'rails_12factor', group: :production
 gem 'unicorn'
 gem 'foreigner'

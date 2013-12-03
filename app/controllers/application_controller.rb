@@ -9,7 +9,8 @@ class ApplicationController < ActionController::Base
   private
 
     def app_constants
-      gon.userLoggedIn = false
+      @current_user = session[:USER]
+      gon.userLoggedIn = is_user_logged_in?
       gon.username = current_user_name
     end
 
@@ -18,15 +19,27 @@ class ApplicationController < ActionController::Base
         return;
       end
 
-      if request.xhr?
-        render :json => { alert: 'You should login to continue', redirect: root_url}, :status => 401
-      elsif !Rails.application.routes.url_helpers.root_path
-        redirect_to root_url;
-      end
+      render :json => { alert: 'You should login to continue', redirect: root_url}, :status => 401
     end
 
   protected
     def current_user_name
-      return "Anirudh";
+      return @current_user[:name] if is_user_logged_in?
+    end
+    
+    def current_user_id
+      return @current_user[:id] if is_user_logged_in?
+    end
+
+    def is_user_logged_in?
+      return !(@current_user.blank? or @current_user[:id].blank?)
+    end
+
+    def load_user_to_session(session,user)
+      session[:USER] = {
+        id:user.id,
+        name:user.name,
+        email:user.email
+      }
     end
 end
