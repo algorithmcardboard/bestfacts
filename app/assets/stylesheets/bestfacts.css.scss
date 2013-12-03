@@ -70,3 +70,7 @@ tr.show{
   @include gradient-vertical(#FFFFFF,#FFFFFF, 0%, 100%);
   text-align:center;
 }
+
+.fact-title{
+  cursor:pointer;
+}

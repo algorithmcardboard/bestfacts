@@ -14,7 +14,7 @@
     };
 
     var getAllFacts = function(sortBy){
-      return $http.get(_url.allFactsUrl,{sort:'Title'});
+      return $http.get(_url.allFactsUrl,{params:{sort:sortBy}});
     };
 
     var createFact = function(title,content){

@@ -6,7 +6,14 @@ class FactsController < ApplicationController
   # GET /facts
   # GET /facts.json
   def index
-    @facts = Fact.where("is_active = true").includes(:user).load
+    if(params[:sort].blank? || params[:sort] == 'Author')
+      sort_order = "users.name";
+    elsif(params[:sort] == 'Title')
+      sort_order = "facts.title";
+    elsif(params[:sort] == 'Content')
+      sort_order = "facts.content";
+    end
+    @facts = Fact.where("is_active = true").includes(:user).order(sort_order).load
   end
 
   # GET /facts/1

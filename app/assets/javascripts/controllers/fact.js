@@ -9,8 +9,11 @@
 
     $scope.editing = false;
 
-    $scope.initilaize = function(){
-      factService.getAllFacts()
+    $scope.getAllFacts = function(sortOrder){
+      if(!sortOrder){
+        sortOrder = 'Author';
+      }
+      factService.getAllFacts(sortOrder)
         .then(function(response){
           $scope.facts = response.data;
         },function(response){
@@ -60,6 +63,6 @@
         });
     };
 
-    $scope.initilaize();
+    $scope.getAllFacts('Content');
   }]);
 })(angular, app);
