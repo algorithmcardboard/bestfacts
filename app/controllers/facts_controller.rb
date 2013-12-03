@@ -6,7 +6,7 @@ class FactsController < ApplicationController
   # GET /facts
   # GET /facts.json
   def index
-    @facts = Fact.all
+    @facts = Fact.includes(:user).load
   end
 
   # GET /facts/1
@@ -23,7 +23,6 @@ class FactsController < ApplicationController
   def edit
   end
 
-  # POST /facts
   # POST /facts.json
   def create
     @fact = Fact.new(fact_params)

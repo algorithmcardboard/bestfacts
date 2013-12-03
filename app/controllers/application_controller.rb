@@ -12,6 +12,7 @@ class ApplicationController < ActionController::Base
       @current_user = session[:USER]
       gon.userLoggedIn = is_user_logged_in?
       gon.username = current_user_name
+      gon.userid = current_user_id
     end
 
     def redirect_if_no_user_session

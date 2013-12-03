@@ -5,40 +5,49 @@
 
 <div class="panel panel-default" ng-controller="FactController">
   <!-- Default panel contents -->
-  <div class="panel-heading">
+  <div class="panel-heading" ng-cloak>
     <span>Listing all facts!!</span>
-    <a class="btn pull-right" ng-class="{show: isUserLoggedIn, hide:!isUserLoggedIn}"><i class="fa fa-plus"></i> Add new fact</a>
+    <!-- <a class="btn pull-right" ng-class="{show: isUserLoggedIn, hide:!isUserLoggedIn}"><i class="fa fa-plus"></i> Add new fact</a> -->
     <a data-toggle="modal" data-target="#loginModal" class="btn pull-right" ng-class="{show: !isUserLoggedIn, hide:isUserLoggedIn}"><i class="fa fa-sign-in"></i> Register to add a fact!</a>
   </div>
-
-  <!-- Table -->
-  <table class="table">
-    <thead>
-      <tr>
-        <th>#</th>
-        <th>Author</th>
-        <th>Title</th>
-        <th>Content</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>$index+1</td>
-        <td>fact.author</td>
-        <td>fact.title</td>
-        <td>fact.content</td>
-      </tr>
-      <tr ng-repeat="fact in facts">
-        <td>{{$index+1}}</td>
-        <td>{{fact.author}}</td>
-        <td>{{fact.title}}</td>
-        <td>{{fact.content}}</td>
-      </tr>
-      <tr ng-class="{show: !isUserLoggedIn, hide:isUserLoggedIn}">
-        <td colspan="4" align="center">
-          <a data-toggle="modal" data-target="#loginModal" class="btn"><i class="fa fa-sign-in"></i> Register to add a fact!</a>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+  <div class="panel-body fact-list-heading">
+    <div class="col-md-1"># </div>
+    <div class="col-md-2">Author</div>
+    <div class="col-md-4">Title</div>
+    <div class="col-md-4">Content</div>
+    <div class="col-md-1"></div>
+  </div>
+  <ul class="list-group" ng-cloak>
+    <li class="list-group-item single-fact" ng-repeat="fact in facts">
+      <div class="row">
+        <div class="col-md-1">{{$index + 1}}</div>
+        <div class="col-md-2">{{fact.username}}</div>
+        <div class="col-md-4">{{fact.title}}</div>
+        <div class="col-md-4">{{fact.content}}</div>
+        <div class="col-md-1 fact-edit-control" ng-show="fact.user_id === current_user_id">
+          <i class="fa fa-times pull-right"></i>
+          <i class="fa pull-right" ng-class="{'fa-pencil':!editing,'fa-check':editing}"></i>
+        </div>
+      </div>
+    </li>
+    <li class="list-group-item new-fact">
+      <div class="row">
+        <div class="col-md-1">{{facts.length + 1}}</div>
+        <div class="col-md-2">{{loggedinUsername}}</div>
+        <div class="col-md-4">
+          <input ng-show="addFact" rows="1" class="form-control" type="text" ng-model="newTitle" required/>
+        </div>
+        <div class="col-md-4">
+          <textarea ng-show="addFact" rows="1" class="form-control" ng-model="newContent" required></textarea>
+        </div>
+        <div class="col-md-1">
+          <i ng-click="addFact=false" class="fa fa-trash-o pull-right"></i>
+          <i ng-click="createFact()" class="fa fa-check pull-right"></i>
+        </div>
+      </div>
+      <div class="add-new-fact" ng-init="addFact=false" ng-hide="addFact">
+        <a ng-click="addFact=true" class="btn">Click to add a new fact!!</a>
+      </div>
+    </li>
+  </ul>
 </div>

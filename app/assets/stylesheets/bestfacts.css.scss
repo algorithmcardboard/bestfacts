@@ -18,3 +18,55 @@ tr.show{
   border-color:#E9322D;
   box-shadow:0 0 6px #F8B9B7;
 }
+
+.panel-body.fact-list-heading{
+  font-weight:bold;
+}
+
+.single-fact > .row, .new-fact > .row{
+  margin-left:0px;
+  margin-right:0px;
+}
+
+.fact-content{
+  padding-right:30px;
+}
+
+.fact-edit-control{
+  position:absolute;
+  right:5px;
+  display:none;
+}
+
+.fact-edit-control > i{
+  cursor:pointer;
+  padding-right:5px;
+}
+
+.single-fact:hover .fact-edit-control{
+  display:inline-block;
+}
+
+.single-fact:hover{
+  @include gradient-vertical(#EEEEEE,#EEEEEE, 0%, 100%);
+}
+
+.new-fact{
+  position:relative;
+}
+
+.new-fact i{
+  cursor:pointer;
+  padding-right:5px;
+}
+
+.add-new-fact{
+  left:0px;
+  right:0px;
+  top:0px;
+  bottom:0px;
+  position:absolute;
+  z-index:600;
+  @include gradient-vertical(#FFFFFF,#FFFFFF, 0%, 100%);
+  text-align:center;
+}

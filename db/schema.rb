@@ -11,17 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131202164059) do
+ActiveRecord::Schema.define(version: 20131203111527) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "facts", force: true do |t|
     t.string   "title"
-    t.text     "content",    null: false
+    t.text     "content",                   null: false
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "is_active",  default: true, null: false
   end
 
   add_index "facts", ["user_id"], name: "index_facts_on_user_id", using: :btree
